@@ -1,4 +1,5 @@
 #include "pspgl_internal.h"
+#include "pspgl_texobj.h"
 
 #define GU_PSM_5650		(0) /* Display, Texture, Palette */
 #define GU_PSM_5551		(1) /* Display, Texture, Palette */
@@ -27,6 +28,14 @@ void glGetIntegerv (GLenum pname, GLint *params)
 	case GL_MAX_TEXTURE_SIZE:
 		params[0] = 512;
 		break;
+	case GL_TEXTURE_BINDING_2D: {
+		struct pspgl_texobj* bound = pspgl_curctx->texture.bound;
+		if(bound != NULL) {
+			params[0] = pspgl_curctx->texture.bound->name;
+		} else {
+			params[0] = 0;
+		}
+	} break;
 	case GL_VIEWPORT:
 		/* XXX IMPRPOVE: better read from registers / register cache */
 		params[0] = pspgl_curctx->viewport.x;

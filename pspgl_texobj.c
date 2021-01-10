@@ -328,6 +328,7 @@ struct pspgl_texobj *__pspgl_texobj_new(GLuint id, GLenum target)
 
 	memset(tobj, 0, sizeof(*tobj));
 
+	tobj->name = id;
 	tobj->refcount = 1;
 	tobj->target = target;
 	tobj->flags = TOF_SWIZZLED; /* swizzle by default */

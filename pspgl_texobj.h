@@ -28,6 +28,7 @@ struct pspgl_texfmt {
 
 
 struct pspgl_texobj {
+	GLuint		name;
 	unsigned	refcount;
 	GLenum		target;		/* either 0 or GL_TEXTURE_2D */
 	GLclampf	priority;
